@@ -1,0 +1,121 @@
+[gd_scene load_steps=3 format=3 uid="uid://2ql4b5f5w677"]
+
+[ext_resource type="Script" uid="uid://vmhmcve2y1xb" path="res://Scenes/Main Game/main_game.gd" id="1_cvnwq"]
+[ext_resource type="Resource" uid="uid://bv56d44hx3d32" path="res://Resources/Items/chisel.tres" id="2_s5vyb"]
+
+[node name="MainGame" type="Control"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cvnwq")
+chisel = ExtResource("2_s5vyb")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Prisoner" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Foreground" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Item" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch_mode = 3
+
+[node name="Control" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+layout_mode = 2
+alignment = 2
+
+[node name="TakeGiveButton" type="Button" parent="Control/HBoxContainer"]
+custom_minimum_size = Vector2(273.805, 0)
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Take/Give"
+
+[node name="MarginContainer" type="MarginContainer" parent="Control"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Control/MarginContainer"]
+custom_minimum_size = Vector2(0, 200)
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 25
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 25
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/Panel/MarginContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="Control/MarginContainer/Panel/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+
+[node name="ItemBox" type="TextureRect" parent="Control/MarginContainer/Panel/MarginContainer/HBoxContainer/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="Control" type="Control" parent="Control/MarginContainer/Panel/MarginContainer/HBoxContainer"]
+custom_minimum_size = Vector2(26, 0)
+layout_mode = 2
+
+[node name="Panel2" type="Panel" parent="Control/MarginContainer/Panel/MarginContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ItemDescription" type="RichTextLabel" parent="Control/MarginContainer/Panel/MarginContainer/HBoxContainer/Panel2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 32
+
+[connection signal="pressed" from="Control/HBoxContainer/TakeGiveButton" to="." method="_on_take_give_button_pressed"]

@@ -11,9 +11,28 @@ config_version=5
 [application]
 
 config/name="Knight on the Inside"
+run/main_scene="uid://mh1lnk4611xw"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GlobalMusic="*res://Global Scripts/GlobalMusic.gd"
+
+[display]
+
+window/size/viewport_width=1024
+window/size/viewport_height=768
+
+[file_customization]
+
+folder_colors={
+"res://Assets/": "green",
+"res://Global Scripts/": "pink",
+"res://Resources/": "orange",
+"res://Scenes/": "blue"
+}
+
 [gui]
 
-theme/custom="uid://chlnkbertyww3"
+theme/custom_font="uid://n5lvdglrdyp4"

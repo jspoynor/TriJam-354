@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bv56d44hx3d32"]
+
+[ext_resource type="Script" uid="uid://c3hg8ckqnhvj1" path="res://Resources/Items/item_resource.gd" id="1_05gre"]
+[ext_resource type="Texture2D" uid="uid://c4tiy5pwfi1c6" path="res://Assets/Art/items/chisel.png" id="2_3yco8"]
+
+[resource]
+script = ExtResource("1_05gre")
+name = "Chisel"
+texture = ExtResource("2_3yco8")
+description = "Maybe they can file through the bars?
+
++1 Escape for this prisoner"
+metadata/_custom_type_script = "uid://c3hg8ckqnhvj1"

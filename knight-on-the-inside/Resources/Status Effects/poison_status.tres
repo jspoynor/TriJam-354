@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StatusEffect" load_steps=3 format=3 uid="uid://by0gsa33bncvr"]
+
+[ext_resource type="Script" uid="uid://ek1hepclmoqo" path="res://Resources/Status Effects/status_effect_resource.gd" id="1_wmuxy"]
+[ext_resource type="Texture2D" uid="uid://cgjeqr3rdkc4q" path="res://Assets/Art/status effects/status poison.png" id="2_ye1vt"]
+
+[resource]
+script = ExtResource("1_wmuxy")
+name = "poison"
+texture = ExtResource("2_ye1vt")
+metadata/_custom_type_script = "uid://ek1hepclmoqo"

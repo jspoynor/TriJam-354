@@ -1,0 +1,63 @@
+[gd_scene load_steps=3 format=3 uid="uid://mh1lnk4611xw"]
+
+[ext_resource type="Texture2D" uid="uid://futg4bylimuf" path="res://Assets/Art/Title-Screen-Background.png" id="1_cq3cr"]
+[ext_resource type="Script" uid="uid://cpaea1cdstcou" path="res://Scenes/_UI/UI Manager/ui_manager.gd" id="1_ywloq"]
+
+[node name="UiManager" type="CanvasLayer"]
+script = ExtResource("1_ywloq")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_cq3cr")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TitleScreen" type="Control" parent="CanvasLayer"]
+texture_filter = 1
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TitleScreen"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 50
+theme_override_constants/margin_top = 150
+theme_override_constants/margin_right = 50
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/TitleScreen/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/TitleScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "The Knight on the Inside"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TitleScreen/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_top = 175
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 175
+
+[node name="Button" type="Button" parent="CanvasLayer/TitleScreen/MarginContainer/VBoxContainer/MarginContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = "Play"
+
+[connection signal="pressed" from="CanvasLayer/TitleScreen/MarginContainer/VBoxContainer/MarginContainer/Button" to="." method="_on_button_pressed"]

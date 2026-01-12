@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StatusEffect" load_steps=3 format=3 uid="uid://bci00np4s8ohf"]
+
+[ext_resource type="Script" uid="uid://ek1hepclmoqo" path="res://Resources/Status Effects/status_effect_resource.gd" id="1_nylsq"]
+[ext_resource type="Texture2D" uid="uid://i3wls2yylagr" path="res://Assets/Art/status effects/staus sheild.png" id="2_jpg05"]
+
+[resource]
+script = ExtResource("1_nylsq")
+name = "sheild"
+texture = ExtResource("2_jpg05")
+metadata/_custom_type_script = "uid://ek1hepclmoqo"
