@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Prisoner" load_steps=4 format=3 uid="uid://cff2c6jl10vpg"]
+
+[ext_resource type="Script" uid="uid://b6nyvbl3tlam1" path="res://Resources/Prisoners/prisoner_resource.gd" id="1_rugei"]
+[ext_resource type="Script" uid="uid://ek1hepclmoqo" path="res://Resources/Status Effects/status_effect_resource.gd" id="2_1yvbo"]
+[ext_resource type="Texture2D" uid="uid://dk8kmgkrjjrfs" path="res://Assets/Art/Prison Cells/guy2.png" id="3_1yvbo"]
+
+[resource]
+script = ExtResource("1_rugei")
+name = "shreck"
+texture = ExtResource("3_1yvbo")
+metadata/_custom_type_script = "uid://b6nyvbl3tlam1"

@@ -1,9 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://2ql4b5f5w677"]
+[gd_scene load_steps=10 format=3 uid="uid://2ql4b5f5w677"]
 
 [ext_resource type="Script" uid="uid://vmhmcve2y1xb" path="res://Scenes/Main Game/main_game.gd" id="1_cvnwq"]
+[ext_resource type="Resource" uid="uid://by0gsa33bncvr" path="res://Resources/Status Effects/poison_status.tres" id="2_1pani"]
 [ext_resource type="Resource" uid="uid://bv56d44hx3d32" path="res://Resources/Items/chisel.tres" id="2_s5vyb"]
+[ext_resource type="Texture2D" uid="uid://blpkpsj3lywif" path="res://Assets/Art/Arrow_left.png" id="3_81f2q"]
+[ext_resource type="Resource" uid="uid://b7e0no2v0wdmd" path="res://Resources/Status Effects/curse_status.tres" id="3_lmabx"]
+[ext_resource type="Resource" uid="uid://bci00np4s8ohf" path="res://Resources/Status Effects/sheild_status.tres" id="4_4u23d"]
+[ext_resource type="Resource" uid="uid://b8jn058lv3r73" path="res://Resources/Prisoners/prisoner_1.tres" id="5_rdiaw"]
+[ext_resource type="Resource" uid="uid://cff2c6jl10vpg" path="res://Resources/Prisoners/prisoner_2.tres" id="6_u325j"]
+[ext_resource type="Resource" uid="uid://54kglbrb2ej0" path="res://Resources/Prisoners/prisoner_3.tres" id="7_f7sjk"]
 
-[node name="MainGame" type="Control"]
+[node name="MainGame" type="Control" node_paths=PackedStringArray("item_box", "item_description", "escape_label", "take_give_button")]
 texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
@@ -12,6 +19,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cvnwq")
+poison_effect = ExtResource("2_1pani")
+curse_effect = ExtResource("3_lmabx")
+sheild_effect = ExtResource("4_4u23d")
+item_box = NodePath("ItemUI/MarginContainer/Panel/MarginContainer/HBoxContainer/Panel/ItemBox")
+item_description = NodePath("ItemUI/MarginContainer/Panel/MarginContainer/HBoxContainer/Panel2/ItemDescription")
+escape_label = NodePath("ItemUI/HBoxContainer/VBoxContainer/EscapeLabel")
+take_give_button = NodePath("ItemUI/HBoxContainer/TakeGiveButton")
+prisoner_1 = ExtResource("7_f7sjk")
+prisoner_2 = ExtResource("6_u325j")
+prisoner_3 = ExtResource("5_rdiaw")
 chisel = ExtResource("2_s5vyb")
 
 [node name="Background" type="TextureRect" parent="."]
@@ -38,7 +55,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Item" type="TextureRect" parent="."]
+[node name="ItemLayer" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -47,7 +64,7 @@ grow_horizontal = 2
 grow_vertical = 2
 stretch_mode = 3
 
-[node name="Control" type="VBoxContainer" parent="."]
+[node name="ItemUI" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -56,24 +73,47 @@ grow_horizontal = 2
 grow_vertical = 2
 alignment = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ItemUI"]
 layout_mode = 2
 alignment = 2
 
-[node name="TakeGiveButton" type="Button" parent="Control/HBoxContainer"]
+[node name="SmallBuffer2" type="Control" parent="ItemUI/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemUI/HBoxContainer"]
+layout_mode = 2
+alignment = 2
+
+[node name="EscapeLabel" type="Label" parent="ItemUI/HBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "10 / 10"
+
+[node name="Control" type="Control" parent="ItemUI/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="TakeGiveButton" type="Button" parent="ItemUI/HBoxContainer"]
 custom_minimum_size = Vector2(273.805, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 64
 text = "Take/Give"
 
-[node name="MarginContainer" type="MarginContainer" parent="Control"]
+[node name="SmallBuffer3" type="Control" parent="ItemUI/HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="ItemUI"]
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="Control/MarginContainer"]
+[node name="Panel" type="Panel" parent="ItemUI/MarginContainer"]
 custom_minimum_size = Vector2(0, 200)
 layout_mode = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="ItemUI/MarginContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -85,14 +125,14 @@ theme_override_constants/margin_top = 25
 theme_override_constants/margin_right = 30
 theme_override_constants/margin_bottom = 25
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer/Panel/MarginContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ItemUI/MarginContainer/Panel/MarginContainer"]
 layout_mode = 2
 
-[node name="Panel" type="Panel" parent="Control/MarginContainer/Panel/MarginContainer/HBoxContainer"]
+[node name="Panel" type="Panel" parent="ItemUI/MarginContainer/Panel/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 
-[node name="ItemBox" type="TextureRect" parent="Control/MarginContainer/Panel/MarginContainer/HBoxContainer/Panel"]
+[node name="ItemBox" type="TextureRect" parent="ItemUI/MarginContainer/Panel/MarginContainer/HBoxContainer/Panel"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -101,15 +141,15 @@ grow_horizontal = 2
 grow_vertical = 2
 expand_mode = 1
 
-[node name="Control" type="Control" parent="Control/MarginContainer/Panel/MarginContainer/HBoxContainer"]
+[node name="Control" type="Control" parent="ItemUI/MarginContainer/Panel/MarginContainer/HBoxContainer"]
 custom_minimum_size = Vector2(26, 0)
 layout_mode = 2
 
-[node name="Panel2" type="Panel" parent="Control/MarginContainer/Panel/MarginContainer/HBoxContainer"]
+[node name="Panel2" type="Panel" parent="ItemUI/MarginContainer/Panel/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="ItemDescription" type="RichTextLabel" parent="Control/MarginContainer/Panel/MarginContainer/HBoxContainer/Panel2"]
+[node name="ItemDescription" type="RichTextLabel" parent="ItemUI/MarginContainer/Panel/MarginContainer/HBoxContainer/Panel2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -118,4 +158,60 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 32
 
-[connection signal="pressed" from="Control/HBoxContainer/TakeGiveButton" to="." method="_on_take_give_button_pressed"]
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SmallBuffer" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="LeftButton" type="TextureButton" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture_normal = ExtResource("3_81f2q")
+texture_pressed = ExtResource("3_81f2q")
+texture_hover = ExtResource("3_81f2q")
+texture_disabled = ExtResource("3_81f2q")
+texture_focused = ExtResource("3_81f2q")
+stretch_mode = 0
+
+[node name="Control" type="Control" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+mouse_filter = 2
+alignment = 1
+
+[node name="RightButton" type="TextureButton" parent="HBoxContainer/VBoxContainer2"]
+custom_minimum_size = Vector2(80, 80)
+layout_mode = 2
+texture_normal = ExtResource("3_81f2q")
+texture_pressed = ExtResource("3_81f2q")
+texture_hover = ExtResource("3_81f2q")
+texture_disabled = ExtResource("3_81f2q")
+texture_focused = ExtResource("3_81f2q")
+stretch_mode = 0
+flip_h = true
+
+[node name="SmallBuffer2" type="Control" parent="HBoxContainer"]
+custom_minimum_size = Vector2(10, 0)
+layout_mode = 2
+mouse_filter = 2
+
+[connection signal="pressed" from="ItemUI/HBoxContainer/TakeGiveButton" to="." method="_on_take_give_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer2/RightButton" to="." method="_on_right_button_pressed"]
