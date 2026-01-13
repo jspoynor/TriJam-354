@@ -50,7 +50,7 @@ var possible_items: Array[Item]
 
 var look_targets: Array[LookTarget] = [LookTarget.WALL, LookTarget.CELL0, LookTarget.CELL1, LookTarget.CELL2]
 
-var look_target: int = 0:
+var look_target: int = 2:
 	set(value):
 		look_target = value
 		_refresh_screen()
@@ -126,6 +126,7 @@ func _on_take_give_button_pressed() -> void:
 			_refresh_screen()
 			return
 		_:
+			GlobalMusic.play_sfx()
 			var cur_prisoner: Prisoner
 			match look_targets[look_target % look_targets.size()]:
 				LookTarget.CELL0:
@@ -137,7 +138,16 @@ func _on_take_give_button_pressed() -> void:
 			_give_item(cur_prisoner, cur_item)
 
 func _give_item(cur_prisoner: Prisoner, given_item: Item):
-	pass
+	cur_prisoner.escape_level += given_item.add_escape
+	if given_item.add_escape >= 0:
+		GlobalMusic.play_sfx(GlobalMusic.GOOD)
+	else:
+		GlobalMusic.play_sfx(GlobalMusic.BAD)
+	
+	cur_item = null
+	_generate_wall_item()
+	_refresh_item_ui()
+	_refresh_screen()
 
 func _on_left_button_pressed() -> void:
 	GlobalMusic.play_sfx()

@@ -3,6 +3,8 @@ extends Node
 const DARK_DUNGEON_GAME_HIPHOP = preload("uid://ciwdmd5wmosym")
 const CONFIRM_1 = preload("uid://b5b1q0mn7tpc8")
 const HIT_DAMAGE_1 = preload("uid://cl2jkcktxdsrr")
+const GOOD = preload("uid://dni1e8nxdnmcu")
+const BAD = preload("uid://ctfwa2ubfoww4")
 
 
 var player: AudioStreamPlayer

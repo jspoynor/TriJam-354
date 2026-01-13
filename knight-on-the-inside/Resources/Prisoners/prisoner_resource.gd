@@ -6,3 +6,4 @@ class_name Prisoner
 
 @export var escape_level: int = 3
 @export var status_effects: Array[StatusEffect] = []
+@export var has_escaped: bool = false
