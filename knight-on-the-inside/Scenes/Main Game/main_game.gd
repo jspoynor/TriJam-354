@@ -25,6 +25,8 @@ extends Control
 @export var prisoner_2: Prisoner
 @export var prisoner_3: Prisoner
 
+var prisoners: Array[Prisoner] = [prisoner_1, prisoner_2, prisoner_3]
+
 const BRICK_WALL = preload("uid://bo6sssv5ssbq0")
 const BACKGROUND = preload("uid://2nr57r5r5opx")
 const FOREGROUND = preload("uid://bba0vmfmt1lw8")
@@ -90,16 +92,16 @@ func _refresh_screen():
 			background.texture = BACKGROUND
 			foreground.texture = FOREGROUND
 			item_layer.texture = null
+			var cur_prisoner: Prisoner
 			match look_targets[look_target % look_targets.size()]:
 				LookTarget.CELL0:
-					prisoner.texture = prisoner_1.texture
-					escape_label.text = escape_label.text.insert(0, str(prisoner_1.escape_level))
+					cur_prisoner = prisoner_1
 				LookTarget.CELL1:
-					prisoner.texture = prisoner_2.texture
-					escape_label.text = escape_label.text.insert(0, str(prisoner_2.escape_level))
+					cur_prisoner = prisoner_2
 				LookTarget.CELL2:
-					prisoner.texture = prisoner_3.texture
-					escape_label.text = escape_label.text.insert(0, str(prisoner_3.escape_level))
+					cur_prisoner = prisoner_3
+			prisoner.texture = cur_prisoner.texture
+			escape_label.text = escape_label.text.insert(0, str(cur_prisoner.escape_level))
 
 func _refresh_item_ui(item: Item = null):
 	if item == null:
@@ -124,7 +126,18 @@ func _on_take_give_button_pressed() -> void:
 			_refresh_screen()
 			return
 		_:
-			pass
+			var cur_prisoner: Prisoner
+			match look_targets[look_target % look_targets.size()]:
+				LookTarget.CELL0:
+					cur_prisoner = prisoner_1
+				LookTarget.CELL1:
+					cur_prisoner = prisoner_2
+				LookTarget.CELL2:
+					cur_prisoner = prisoner_3
+			_give_item(cur_prisoner, cur_item)
+
+func _give_item(cur_prisoner: Prisoner, given_item: Item):
+	pass
 
 func _on_left_button_pressed() -> void:
 	GlobalMusic.play_sfx()
